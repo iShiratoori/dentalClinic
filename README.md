@@ -13,22 +13,32 @@ As this software is designed for user to have multiple role, role authentication
 
 LANDING PAGE OR HOMEPAGE
 ![Image Alt Text](./1.%20Homepage%20or%20landing.png)
+
 SHOWING ALL DENTISTS
 ![Image Alt Text](./2.%20Dentists%20page.png)
+
 DENTIST PROFILE
 ![Image Alt Text](./3.%20Dentist%20Profile.png)
+
 SHOWING ALL PATIENTS
 ![Image Alt Text](./4.%20Patients%20page.png)
+
 PATIENT PROFILE
-![Image Alt Text](./5.%20Patient%20Profile.png)\
+![Image Alt Text](./5.%20Patient%20Profile.png)
+
 PATIENT DROPDOWN
 ![Image Alt Text](./6.%20Patient%20dropdown.png)
+
 DELETION CONFIRMATION
 ![Image Alt Text](./7.%20Patient%20Deletion%20Confirmation.png)
+
 Users 
 ![Image Alt Text](./8.%20Users%20page.png)
+
 MESSAGES not function but soon i.a
 ![Image Alt Text](./9.%20Chat%20messages%20partial.png)
+with full 
 ![Image Alt Text](./10.%20Chat%20messages%20full.png)
+
 Robust search
 ![Image Alt Text](./11.%20Search.png)
