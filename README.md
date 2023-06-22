@@ -35,6 +35,10 @@ DELETION CONFIRMATION
 Users 
 ![Image Alt Text](./8.%20Users%20page.png)
 
+
+Appointments page
+![Image Alt Text](./11.%20Search.png)
+
 MESSAGES not function but soon i.a
 ![Image Alt Text](./9.%20Chat%20messages%20partial.png)
 with full 
