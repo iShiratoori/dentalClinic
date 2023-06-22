@@ -1,6 +1,6 @@
 const Dentist = require('../../models/dentists')
 const Patient = require('../../models/patients')
-const ExpressError = require('../..//utils/expressError');
+const ExpressError = require('../../utils/expressError');
 const catchAsync = require('../../utils/catchAsync');
 const { cloudinary } = require('../../cloudinary');
 

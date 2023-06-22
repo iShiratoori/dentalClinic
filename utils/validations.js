@@ -1,3 +1,5 @@
+const ExpressError = require('../utils/expressError');
+
 const { patientSchema, dentistSchema, userSchema, AppointmentSchema } = require('./Schema');
 
 module.exports.validatePatient = (req, res, next) => {
@@ -18,6 +20,7 @@ module.exports.validatePatient = (req, res, next) => {
 module.exports.validateDentist = (req, res, next) => {
     const { error } = dentistSchema.validate(req.body);
     if (error) {
+        console.log(req.body.dentist.dob)
         const msg = ({
             title: 'Back end Validator Error',
             text: error.details.map(el => el.message).join(',')
