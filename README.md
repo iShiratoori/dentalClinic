@@ -12,3 +12,4 @@ Role:
 As this software is designed for user to have multiple role, role authentication becomes a challenging aspect. To address this, a specific approach has been implemented. When a user first registers, their role is initially assigned as "guest" to ensure security. To obtain the admin role, the user must navigate to the user registration route and interrupt the process before the new account is registered. This can be achieved by calling two functions, namely "assignRole" and "definePermissions." These functions play a crucial role in assigning the appropriate roles and defining the corresponding permissions.
 
 ![Image Alt Text](./1.%20Homepage%20or%20landing.png)
+![Image Alt Text](./relative/path/to/your/2. Dentists page.png)
