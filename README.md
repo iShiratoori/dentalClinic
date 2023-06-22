@@ -37,7 +37,7 @@ Users
 
 
 Appointments page
-![Image Alt Text](./11.%20Search.png)
+![Image Alt Text](./images/12.%20Appointments%20Page.png)
 
 MESSAGES not function but soon i.a
 ![Image Alt Text](./9.%20Chat%20messages%20partial.png)
