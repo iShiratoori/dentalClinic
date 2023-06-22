@@ -1,0 +1,60 @@
+<div class="mx-3 mb-3 row me-3">
+  <% dentists.forEach((dentist, i) => {%>
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card shadow  border-0 rounded">
+      <div class="card-header border-0 bg-white text-end m-0 p-0">
+        <div class="dropdown">
+          <a class="btn ms-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-three-dots-vertical"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin/dashboard/dentists/<%=dentist._id%>/edit">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Active</a></li>
+            <li><a class="dropdown-item" href="#">Disable</a></li>
+            <li><a class="dropdown-item text-danger" type="button" data-bs-toggle="modal" data-bs-target="#<%=dentist._id%>">Delete</a></li>
+          </ul>
+          <div class="modal fade" id="<%=dentist._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-start">
+              <div class="modal-content">
+                <div class="modal-header border-0">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="info-card_icon mx-auto mb-4 d-flex flex-column justify-content-center align-items-center">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Are you sure? </h1>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-4">Do you really want to delete this dentist? This process cannot be undone?</div>
+                </div>
+                <div class="modal-footer border-0">
+                  <div class="d-flex flex-row">
+                    <div>
+                      <a class="btn btn-secondary me-1" data-bs-dismiss="modal">Cancel</a>
+                    </div>
+                    <div>
+                      <form action="/admin/dashboard/dentists/<%=dentist._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger me-1" href="">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <div class="image m-2">
+          <img src="<%=dentist.image.url %>" alt="" class="avatar avatar-4xl rounded-circle me-2 " />
+        </div>
+        <div>
+          <p class="fs-4 mb-0"><strong><%=dentist.name.firstName %> <%=dentist.name.lastName%></strong></p>
+          <p class="text-muted mt-0"><%=dentist.dob.getFormatedDate('d') %></p>
+        </div>
+        <div class="bottom">
+          <a class="btn btn-primary mt-2" href="/admin/dashboard/dentists/<%=dentist._id%>">view details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>

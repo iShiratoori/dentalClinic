@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <div class="col-4 offset-3">
+    <div class="mt-3">
+      <h1 class="title text-center">Updating Dentist</h1>
+    </div>
+    <div class="mt-5">
+      <form action="/admin/dashboard/dentists/<%=dentist._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label" for="title">Title</label>
+          <select name="dentist[name][title]" id="title" class="form-select" required>
+            <% utils.titles.forEach((title, i) => {%>
+            <option value="<%=title %>" <%= dentist.name.title === title ? 'selected': '' %>><%=title %></option>
+            <% })  %>
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="name">First Name</label>
+          <input class="form-control" type="text" name="dentist[name][firstName]" id="name" value="<%=dentist.name.firstName %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="name">Last Name</label>
+          <input class="form-control" type="text" name="dentist[name][lastName]" id="name" value="<%=dentist.name.lastName %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="dob">Date of Birth</label>
+          <input class="form-control" type="date" name="dentist[dob]" id="dob" value="<%=dentist.dob.getReverseDate() %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="gender">Gender</label>
+          <select name="dentist[gender]" id="gender" class="form-select" required>
+            <% utils.gender.forEach((gender, i) => {%>
+            <option value="<%=gender %>" <%= dentist.gender === gender ? 'selected': '' %>><%=gender %></option>
+            <% })  %>
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="name">specialization</label>
+          <input class="form-control" type="text" name="dentist[specialization]" id="name" value="<%=dentist.specialization %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="address">Dentist Address</label>
+          <div>
+            <input class="form-control mb-2" type="text" name="dentist[address][addressL1]" id="address" placeholder="address line 1" required value="<%=dentist.address[0].addressL1 %>">
+            <input class="form-control mb-2" type="text" name="dentist[address][addressL2]" id="address" placeholder="address line 2">
+            <input class="form-control mb-2" type="text" name="dentist[address][postCode]" id="address" placeholder="Post Code" required value="<%=dentist.address[0].postCode %>">
+            <input class="form-control mb-2" type="text" name="dentist[address][country]" id="address" placeholder="Country name" required value="<%=dentist.address[0].country %>">
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="phone">Mobile</label>
+          <input class="form-control" type="text" name="dentist[contacts][phone]" id="phone" required value="<%=dentist.contacts.phone %>">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="Email">Email</label>
+          <input class="form-control" type="text" name="dentist[contacts][email]" id="email" required value="<%=dentist.contacts.email %>">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="form-file mb-3 custom-file d-flex flex-column">
+          <label for="image" class="form-file-label">Choose profile image
+          </label>
+          <input type="file" name="profileImage" id="image" class="form-file-input">
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+          <button class="btn btn-success">Update dentist</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

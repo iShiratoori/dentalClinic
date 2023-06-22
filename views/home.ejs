@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/homepage.css">
+  <title>smileClinic</title>
+</head>
+
+<body>
+  <div class="landing-page d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div class="d-flex flex-row">
+          <h3 class="float-md-left mb-0 ">
+            <i class="bi bi-emoji-smile text-primary"></i>
+            <a href="#" class="brand text-white">
+              smileClinic </a>
+          </h3>
+          <nav class="nav nav-masthead justify-content-center ms-auto">
+            <div class="navbar">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </div>
+            <div class="navbar">
+              <a class="nav-link" href="#contact"><button class="btn btn-primary appointment">Need Appointment</button></a>
+            </div>
+            <div class="navbar">
+              <% if(!currentUser) { %>
+              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link" href="/register">Register</a>
+              <% } else { %>
+              <a class="nav-link" href="/<%=currentUser.getDirectory%>/dashboard">dashboard</a>
+              <a class="nav-link" href="/logout">Logout</a>
+              <% } %>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <main class="px-3">
+        <section>
+          <p id="title" class="fs-1 text-break fw-bold">We are opening in</p>
+          <h1 class="time">
+            <span id="clock">
+              <span id="hours-counter">0</span>
+              <span class="counter-label">h</span>
+              <span>:</span><span id="minutes-counter">0</span>
+              <span class="counter-label">m</span>
+              <span>:</span><span id="seconds-counter">0</span>
+              <span class="counter-label">s</span>
+            </span>
+          </h1>
+          <p class="lead"> Welcome to smileClinic! <br> Smile with confidence, for your oral health is our top priority. <br>
+            Feel free to share some of your own and comment on others!</p>
+          <a href="/appointment" class="btn btn-lg btn-primary font-weight-bold border-secondary bg-primary shadow appointment"> Need Appointment</a>
+        </section>
+      </main>
+
+      <footer class="mt-auto text-white-50">
+        <p>&copy; <%= (new Date()).toLocaleString(undefined, { year: 'numeric'}) %> </p>
+      </footer>
+    </div>
+  </div>
+  <div class="info-page text-white d-flex flex-column">
+
+    <div class="container">
+      <section class="about mt-5 pt-5 ms-auto" id="about">
+        <div class="row align-items-center">
+          <div class="col-md-6 image">
+            <img src="https://raw.githubusercontent.com/ValentineFernandes/DentalClinic-Website/main/images/about-img.jpg" class="w-100 mb-5 mb-md-0 rounded-5" alt="">
+          </div>
+          <div class="col-md-6 content">
+            <h3>About Us</h3>
+            <h3>Genuine Family Healthcare</h3>
+            <p>At DentalClinic, we are dedicated to providing genuine family healthcare and helping you achieve the beautiful,
+              confident smile you've always desired. With our team of skilled professionals and state-of-the-art dental technology,
+              we deliver comprehensive dental services in a comfortable and caring environment.</p>
+            <a href="#contact" class="btn btn-primary">make appointment</a>
+          </div>
+        </div>
+      </section>
+      <section class="services mt-5 pt-5" id="services">
+        <h1 class="heading text-center mb-5">Our Services</h1>
+        <div class="row justify-content-between">
+          <div class="col-xl-3 col-md-5 mx-2 ">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Alignment specialist</h3>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-5">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Cosmetic dentistry</h3>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-5">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Oral hygiene experts</h3>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-5">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Root canal specialist</h3>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-5">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Live dental advisory</h3>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-5">
+            <div class="d-flex flex-column align-items-center mb-3">
+              <img src="https://www.flaticon.com/download/icon/993250?icon_id=993250&author=315&team=315&keyword=Dental+care&pack=993235&style=0&style_id=698&format=png&color=%23000000&colored=2&size=512&selection=1&type=standard&token=03AL8dmw8Sr_YXS12H2cM0GBV4Y32-Mj06XWHytWrBKgKyIDFNlJOK3CaYfZi1yb6QGY2KlMFa0c7rnQd5Zq_aTtqcTsgvFMA_9j94bJItzO7W7HDQe5DlAWyRbldxYW5-hZJtc_lGfNRi4PR41mlbCBKGm3zvWFzQcqefy35ZWjRa4Yi-n9tc1_L93cDjcWtCBge_CNPnNX6_2oZDmcTkIwOxdDjKCME_N71qK2O6GHSOqTydxnBITpJpTPvEQiHltsy1CklBnxsXWlnyQ9XS6A-pFibmI-rx4zZl6hI4tKaDVUUK0ESZyV7M_aU0pgTFADvC6HMfrV42I6Kwdl_MyHGAea5Lcuur5L97dJgylekH6dlFVfahT-VvqfmRMfA-iICUELtt5vr2St5jutnK-ejtKmk6cD1J6Ugx8veZ3ON4jntk5VuEGMelyiStxIVzsu7Q_VvlhsdrpL4TgC2kz8Q_WfX_2uvGjIfSQUmq5JYA9EcOjEhdnfGNC0bJ6sjvEIAAa1OyoWzPMpSUuamMCzeIDP36qdWJC0w9f3hOREIqT4YNJyLQV2W5gBx193pEIC2GPRx3ez2wXYp47-gSA6R6gO1EuYKObnxrcuYlR1A-lzUgDqpWmw6T25ChVEiseVj7jQVM2U52YThlk5MTc8nhQNMRyD9IF-x2vKMtQYq5dL0uED5ImbyT7Jss4cO7HTP11_LEBmNEuiTQy2ADP2Pcsfkzxt0souGhCV7DnmWtrQtl_9BgFQVsfZWyGIhrmAL4TBX9mKv4BZzfJJqtwc2vk5Fi828BrzttT9U_gZKoJ40gQmRW0Gtl3rbPitRhIfMuQMLH9Dsz5OFQSjx5R6pLkjycszrskq1TnJjlyXbfJ_cdT976CAZnE33kcglEIj2cr5uecp74DbRiHnizQ0DC79GFXkOG9f7_sO1qs21V_kvdNpIPoguAZ5fHQ0PKcBUJQJNAPNyLDvBsz7tsaAyuUg410gwyz8l_skSEyYUIOGiwFAPo5nzIqIum5GC7cg0bhFDmIDU5_lhru4u8I_o25bpUv4A_o2k1cMUmuQdmW998AkkuVio7ZHjFSipEJNK0q8mhwu11p5F6aFSi8UzYGWlQWG6JHkFYJzEHrujDvYgOgFdhI23t7Da729oZAuIu8pLUZrT3Zp2siWylMNkNEVcBoJcITa6Pw1KZx6GPzygeTqkHHdTug91vP_6MDaDzF4PQnnJg7tqsSzkZa_XMvlcDDvCsaTq0PKVBOYf9RmnOGq3iwtdyozh0NUjZsi4VKps0LpXUqANrWauyAfZ_deb6ho1GcLNWI37KO8kHbTaq3t3AhjrURmx8dfyAKMrgWTX9uJk0xgTHuUYKUyHHUoYD4Fwo9QPo0AOHkj0R3KbNEviJbrWNYjvWa1DQKsCuYAHUIM8O84_EwdnPqZHrgvzxqtn0l8KtZ1sjlgeQHq6xqDXCCb4A4DbcaD36V8Kng9o2A6yMP9LLY88MRSnmLUOXfKmZMw" alt="">
+              <h3>Cavity inspection</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact  mt-3 pt-3 text-center" id="contact">
+        <h1 class="heading text-center">Make Appointment</h1>
+        <form class="validated-form" action="#" novalidate>
+          <div class="row">
+            <div class="col-xl-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Enter your name</label>
+                <div class="row justify-content-center">
+                  <div class="col-xl-10 col-md-8">
+                    <input type="text" name="name" placeholder="Enter your name" class="form-control rounded-3" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Enter your email</label>
+                <div class="row justify-content-center">
+                  <div class="col-xl-10 col-md-8">
+                    <input type="email" name="email" placeholder="Enter your email" class="form-control rounded-3" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Enter your phone number</label>
+                <div class="row justify-content-center">
+                  <div class="col-xl-10 col-md-8">
+                    <input type="number" name="number" placeholder="Enter your number" class="form-control rounded-3" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Enter appointment date and time</label>
+                <div class="row justify-content-center">
+                  <div class="col-xl-10 col-md-8">
+                    <input type="datetime-local" name="date" class="form-control rounded-3" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-success">submit</button>
+        </form>
+
+      </section>
+    </div>
+    <section class="pt-5">
+      <footer class="text-center text-lg-start text-white">
+        <div class="container p-4 pb-0">
+          <section class="">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h3 class="mb-4 font-weight-bold">
+                  <i class="bi bi-emoji-smile text-white"></i>
+                  smileClinic
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus blanditiis facilis rem consequatur iste excepturi,
+                  illo est ullam similique rerum accusantium officiis atque incidunt ad, eum facere temporibus aut? Quidem!
+                </p>
+              </div>
+              <hr class="w-100 clearfix d-md-none" />
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">
+                  Useful links
+                </h6>
+                <p>
+                  <a class="text-white" href="#">Your Account</a>
+                </p>
+                <p>
+                  <a class="text-white" href="#">Become member</a>
+                </p>
+                <p>
+                  <a class="text-white" href="#">NHS fees</a>
+                </p>
+                <p>
+                  <a class="text-white" href="#">Help</a>
+                </p>
+              </div>
+
+              <!-- Grid column -->
+              <hr class="w-100 clearfix d-md-none" />
+
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                <p><i class="fas fa-home mr-3"></i> Hyde, SK14 4NB, UK</p>
+                <p><i class="fas fa-envelope mr-3"></i> info@smileclinic.com</p>
+                <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+          </section>
+          <hr class="my-3">
+          <section class="p-3 pt-0">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-7 col-lg-8 text-center text-md-auto">
+                <div class="p-3">
+                  &copy; <strong><%= (new Date()).toLocaleString(undefined, { year: 'numeric'}) %></strong> :
+                  <a class="text-white" href="https://shiratoori.com/">Shiratoori</a>
+                </div>
+              </div>
+              <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                <a class="btn btn-outline-primary rounded-circle m-1" class="text-white" href="#"><i class="bi bi-facebook"></i></a>
+                <a class="btn btn-outline-light rounded-circle m-1" class="text-white" href="#"><i class="bi bi-twitter"></i></a>
+                <a class="btn btn-outline-light rounded-circle m-1" class="text-white" href="#"><i class="bi bi-google"></i></a>
+                <a class="btn btn-outline-light rounded-circle m-1" class="text-white" href="#"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </footer>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="/js/homepage.js"></script>
+    <script src="/js/validateForms.js"></script>
+</body>
+
+</html>

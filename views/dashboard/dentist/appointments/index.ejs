@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') %>
+<div class="appointment">
+  <div class="container ms-3">
+    <div class="mt-4 pt-5">
+      <div class="row">
+        <div class="col">
+          <h4 class="fw-bold text-grey">Showing all appointments</h4>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="d-flex flex-row text-end">
+        <a class="btn btn-primary ms-auto" href="/admin/dashboard/appointments/new">New Appointment</a>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-primary">
+          <tr>
+            <th scope="col" class="text-white fw-bold fs-6">Patient</th>
+            <th scope="col" class="text-white fw-bold fs-6">Status</th>
+            <th scope="col" class="text-white fw-bold fs-6">Appointment</th>
+            <th scope="col" class="text-white fw-bold fs-6">Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% dentist.appointments.forEach((appointment, i) =>{%>
+          <tr>
+            <td>
+              <div class="d-flex flex-row">
+                <div>
+                  <img src="<%=appointment.patient.image.url%>" alt="User Img" class="avatar avatar-sm rounded-circle me-2">
+                </div>
+                <div>
+                  <a href="/admin/dashboard/patients/<%=appointment.patient._id%>">
+                    <span class="mb-0 fs-5 text-dark"><%=appointment.patient.name.firstName %> <%=appointment.patient.name.lastName%></span>
+                    <span class="text-muted d-block"><%=appointment.patient.dob.getAge()%> yrs, <%=appointment.patient.gender %></span>
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td>
+              <% if(appointment.status === 'failed') {%>
+              <span class="btn btn-outline-danger"><%=appointment.status%></span>
+              <% } else if( appointment.status === 'attended') {%>
+              <span class="btn btn-outline-success"><%=appointment.status%></span>
+              <% }else{ %>
+              <span class="btn btn-outline-primary"><%=appointment.status%></span>
+              <% } %>
+            </td>
+            <td>
+              <h6 class="mb-0"><%=appointment.getTime%></h6>
+              <small><%=appointment.getDate %></small>
+            </td>
+            <td>
+              <h6 class="mb-0">+<%=appointment.patient.contacts.phone %></h6>
+              <a href="#!"><small>Contact</small></a>
+            </td>
+            <td class="text-end">
+              <div class="d-flex flex-row">
+                <div>
+                  <a class="btn btn-sm text-primary" href="/admin/dashboard/appointments/<%=appointment._id%>">View</a>
+                </div>
+                <div class="pt-1">
+                  <form action="/admin/dashboard/appointments/<%=appointment._id%>?_method=Delete" method="POST">
+                    <button class="btn btn-sm text-danger">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </td>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

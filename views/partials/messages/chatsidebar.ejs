@@ -1,0 +1,25 @@
+<% users.forEach((user, i) => {%>
+<li class="pb-3">
+  <a href="#">
+    <div class="row align-items-center">
+      <div class="col mx-0 px-0">
+        <div class="d-flex justify-content-evenly">
+          <div class="avatar avatar-xl">
+            <img src="<%=user.image.url %>" alt="avatar" class="rounded-circle icon">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-start">
+          <div class="name">
+            <div class="fw-bold "><%=user.username %></div>
+            <div class="status">
+              <i class="bi bi-circle-fill online"></i> online
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>
+<% })  %>

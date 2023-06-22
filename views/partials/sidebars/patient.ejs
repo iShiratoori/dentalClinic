@@ -1,0 +1,35 @@
+<div>
+  <a href="/" class="brand"><i class="bi bi-emoji-smile icon"></i>smileClinic</a>
+  <ul class="side-menu">
+    <li><a href="/<%=currentUser.getDirectory%>/dashboard/">
+        <i class="bi bi-grid icon"></i>
+        Overview</a>
+    </li>
+    <li><a href="/<%=currentUser.getDirectory%>/dashboard/dentist">
+        <i class="bi bi-person icon"></i>
+        Your Dentist</a>
+    </li>
+    <li><a href="/<%=currentUser.getDirectory%>/dashboard/appointments">
+        <i class="bi bi-calendar icon"></i>
+        Appointments</a>
+    </li>
+    <li><a href="#">
+        <i class='bi bi-chat-dots icon'></i>
+        Messages</a>
+    </li>
+    <li><a href="/<%=currentUser.getDirectory%>/dashboard/payments">
+        <i class='bi bi-credit-card icon'></i>
+        All Payments</a>
+    </li>
+    <li><a href="#">
+        <i class='text-danger  bi bi-flag icon'></i>
+        Report</a>
+    </li>
+  </ul>
+  <div class="logout">
+    <div class="logout-wrapper bg-light p-3 rounded-5 vh-auto">
+      <a href="/logout" class="btn btn-danger btn-logout">Logout</a>
+      <p>when done your session please logout</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <div class="col-4 offset-3">
+    <div class="mt-3">
+      <h1 class="title text-center">Editing Appointment</h1>
+    </div>
+    <div class="mt-5">
+      <form action="/admin/dashboard/appointments/<%=appointment._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+        <div class="mb-3">
+          <label class="form-label" for="type">Type</label>
+          <input class="form-control" type="text" name="appointment[type]" id="type" value="<%=appointment.type %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="patientName">Patient Name</label>
+          <input class="form-control" type="text" name="appointment[patient][name]" id="patientName" value="<%=appointment.patient.getFullName()%>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="dentistName">Dentist Name</label>
+          <input class="form-control" type="text" name="appointment[dentist][name]" id="dentistName" value="<%=appointment.dentist.getFullName() %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="date">Date</label>
+          <input class="form-control" type="date" name="appointment[date]" id="date" value="12/12/2022" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="time">Time</label>
+          <input class="form-control" type="time" name="appointment[time]" id="time" value="<%=appointment.time %>" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="appointmentStatus">Status</label>
+          <select class="form-select" name="appointment[status]" id="appointmentStatus" required>
+            <% Appointmentstatus.forEach((status, i) => {%>
+            <option value="<%=status %>" <%= appointment.status === status ? 'selected': '' %>><%=status %></option>
+            <% })  %>
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+          <button class="btn btn-success">Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

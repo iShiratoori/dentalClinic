@@ -1,0 +1,70 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <div class="col-4 offset-3">
+    <div class="mt-3">
+      <h1 class="title text-center">Create new Appointment</h1>
+    </div>
+    <div class="mt-5">
+      <form action="/admin/dashboard/appointments/" method="POST" novalidate class="validated-form">
+        <div class="mb-3">
+          <label class="form-label" for="type">Type</label>
+          <input class="form-control" type="text" name="appointment[type]" id="type" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="patientName">Patient Name</label>
+          <% if(!patient) {%>
+          <input class="form-control" type="text" name="appointment[patient][name]" id="patientName" required>
+          <% } else{%>
+          <input class="form-control" type="text" name="appointment[patient][name]" id="patientName" value="<%=patient.getFullName()%>" required>
+          <% } %>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="dentistName">Dentist Name</label>
+          <% if(patient && patient.dentist) {%>
+          <input class="form-control" type="text" name="appointment[dentist][name]" id="dentistName" value="<%=patient.dentist.getFullName()%>" required>
+          <% } else{%>
+          <input class="form-control" type="text" name="appointment[dentist][name]" id="dentistName" required>
+          <% } %>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="date">Date</label>
+          <input class="form-control" type="date" name="appointment[date]" id="date" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="time">Time</label>
+          <input class="form-control" type="time" name="appointment[time]" id="time" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="time">Status</label>
+          <select class="form-select" name="appointment[status]" id="time" required>
+            <option value="" selected disabled hidden>Choose status</option>
+            <option value="failed">failed</option>
+            <option value="due">due</option>
+            <option value="attended">attended</option>
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+          <button class="btn btn-success">Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

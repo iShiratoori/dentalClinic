@@ -1,0 +1,178 @@
+<% layout('layouts/boilerplate') %>
+<div class="row mb-3">
+  <div class="title">
+    <h1 class="fw-medium">Welcome back, <%= currentUser.username %></h1>
+    <p class="text-muted">Have a nice day and great work.</p>
+  </div>
+</div>
+<div class="row g-6 mb-6">
+  <div class="col-xl-3 col-sm-6 col-12">
+    <a href="#" class="btn-link btn-link-hover">
+      <div class="card shadow border-0">
+        <div class="card-header border-0"><strong>Patients</strong></div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Patient's</span>
+              <span class="h3 font-bold mb-0"><%=patients.length %></span>
+            </div>
+            <div class="col-auto">
+              <div class="bg-primary text-white text-lg rounded-circle">
+                <i class="icon-shape fa-solid fa-user fa-2xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-0">
+      <div class="card-header border-0"><strong>Dentists</strong></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Dentists</span>
+            <span class="h3 font-bold mb-0"><%=dentists.length %></span>
+          </div>
+          <div class="col-auto">
+            <div class="bg-success text-white text-lg rounded-circle">
+              <i class="icon-shape fa-solid fa-user-doctor fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-0">
+      <div class="card-header border-0"><strong>Today Appointments</strong></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <span class="h6 font-semibold text-muted text-sm d-block mb-2">there are,</span>
+            <span class="h3 font-bold mb-0"><%=upcommingAppointments.today.length %><span class="h6 font-semibold text-muted text-sm ms-2">due appointments today</span></span>
+          </div>
+          <div class="col-auto">
+            <div class="bg-danger text-white text-lg rounded-circle">
+              <i class="icon-shape fa-solid fa-calendar-check fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-0">
+      <div class="card-header border-0"><strong>Users</strong></div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
+            <span class="h3 font-bold mb-0"><%=users.length %></span>
+          </div>
+          <div class="col-auto">
+            <div class="bg-success text-white text-lg rounded-circle">
+              <i class="icon-shape fa-duotone fa-users-medical fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <span class="h6 font-semibold text-muted text-sm">Un-intialized users:</span>
+            <span class="h3 font-bold mb-0 text-danger"><%=usersDetails.unAssotiatedUsers() %></span>
+          </div>
+          <div class="col-12">
+            <span class="h6 font-semibold text-muted text-sm">Number of Admin:</span>
+            <span class="h3 font-bold mb-0"><%=usersDetails.Admins()%></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row me-2">
+  <div class="col-auto ms-auto">
+    <a class="btn btn-success disabled" href="/admin/dashboard/appointment/update">update table</a>
+  </div>
+</div>
+<div class="card shadow border-0 mb-7">
+  <div class="card-header">
+    <h5 class="mb-0"> Appointments Quee Patient List
+    </h5>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-nowrap">
+      <thead class="bg-dark">
+        <tr>
+          <th scope="col" class="text-white">TICKET</th>
+          <th scope="col" class="text-white">NAME</th>
+          <th scope="col" class="text-white">DATE</th>
+          <th scope="col" class="text-white">Time</th>
+          <th scope="col" class="text-white">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% upcommingAppointments.today.forEach((today, i) =>{ %>
+        <tr>
+          <td> <%=today.patient_ticket %> </td>
+          <td> <a class="text-heading font-semibold" href="#"><strong><%=today.patient_name %></strong> </a></td>
+          <td> <%=today.getDate %></td>
+          <td> <%=today.getTime %> </td>
+          <td> <span class="badge badge-lg badge-dot"> <i class="<%=today.action === 'Done' ? 'bg-success' : 'bg-warning' %>"></i><%=today.action %></span> </td>
+        </tr>
+        <% }) %>
+        <% upcommingAppointments.tomorrow.forEach((tomorrow, i) =>{ %>
+        <tr>
+          <td id="patient"><%=tomorrow.patient_ticket %></td>
+          <td><%=tomorrow.patient_name %></td>
+          <td><%=tomorrow.getDate %></td>
+          <td><%=tomorrow.getTime %></td>
+          <td> <span class="badge badge-lg badge-dot"> <i class="bg-dark"></i><%=tomorrow.action %> </span> </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer border-0 py-5"> <span class="text-muted text-sm">Showing <span class="text-primary fs-4"><%=upcommingAppointments.today.length + upcommingAppointments.tomorrow.length %></span> Upcoming Appointments</span> </div>
+</div>
+
+<div class="mb-3">
+  <div class="row">
+    <div class="col-xl-2">
+      <div class="calendar">
+        <div class="calendar-header">
+          <span class="me-1"><%=dateAndTime.currentMonth %></span>
+          <span><%=dateAndTime.year %></span>
+        </div>
+        <div class="calendar-body">
+          <div class="calendar-week-day">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="calendar-days">
+            <% dateAndTime.days.forEach((day, i) =>{%>
+            <%if(day > 0) {%>
+            <div class="calendar-day-hover <%= dateAndTime.days[dateAndTime.currentDayIndex] === day ? 'curr-date': '' %>"><%=day %></div>
+            <% } else{%>
+            <div></div>
+            <% } %>
+            <% })%>
+          </div>
+        </div>
+        <div class="month-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mb-3">
+  <div class="row">
+
+  </div>
+</div>

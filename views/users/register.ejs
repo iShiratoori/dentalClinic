@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container d-flex justify-content-center align-items-center vh-100 bg-dark">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-xl-5 offset-xl-3">
+      <div class="card shadow">
+        <img src="https://images.unsplash.com/photo-1620775997780-a01e050a9db4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="" class="card-img-top" />
+        <div class="card-body">
+          <h1 class="card-title">Register</h1>
+          <form action="/register" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="form-label" for="username">Username</label>
+              <input class="form-control" type="text" id="username" name="user[username]" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-control" type="email" id="email" name="user[email]" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">Password</label>
+              <input class="form-control" type="password" id="password" name="user[password]" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="form-file mb-3 custom-file">
+              <label for="image" class="form-file-label d-block">
+                <span class="form-file-text custom-file-label">Profile image</span>
+              </label>
+              <input type="file" name="profileImage" id="image" class="form-file-input" multiple>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-success">Register</button>
+              <span>Or <a href="/login"><strong>Sign in</strong></a></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

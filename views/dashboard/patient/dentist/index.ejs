@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4">
+      <div class="card">
+        <img src="<%=patient.dentist.image.url %>" alt="" class="card-img-top">
+        <div class="card-body">
+          <div class="card-text">
+            <p>"Smile with confidence, for your oral health is our my top priority".</p>
+          </div>
+          <p class="text-dark font-monospace text-center me-4"><%=patient.dentist.getFullName() %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card rounded-4 shadow-4">
+        <div class="card-header bg-grey border-primary">
+          <div class="d-flex flex-row">
+            <a class="btn btn-primary ms-auto" href="#">Need appointment</a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-6 col-md-6 mb-4">
+              <label class="fs-bold text-primary">Name </label>
+              <p class="text-dark fw-bold"><%=patient.dentist.getFullName() %></p>
+            </div>
+            <div class="col-xl-6 col-md-6 mb-4">
+              <label class="fs-bold text-primary">Contacts </label>
+              <div class="ms-3">
+                <label>Phone</label>
+                <p class="text-dark fw-bold"><%=patient.dentist.contacts.phone %></p>
+                <label>Email</label>
+                <p class="text-dark fw-bold"><%=patient.dentist.contacts.email %></p>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 mb-4">
+              <label class="fs-bold text-primary">Gender </label>
+              <p class="text-dark fw-bold"><%=patient.dentist.gender %></p>
+            </div>
+            <div class="col-xl-6 col-md-6 mb-4">
+              <label class="fs-bold text-primary">Specialized in </label>
+              <p class="text-dark fw-bold"><%=patient.dentist.specialization %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

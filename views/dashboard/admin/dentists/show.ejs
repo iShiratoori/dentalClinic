@@ -1,0 +1,130 @@
+<% layout('layouts/boilerplate') %>
+<div class="row p-5 m-5">
+  <div class="col-xl-9 ">
+    <div class="card">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="col-xl-3 text-center">
+          <div class="icon mx-5 px-5 mt-5 pt-5">
+            <img src="<%=dentist.image.url %>" alt="avatar" class="avatar-4xl rounded-circle">
+          </div>
+          <div class="name">
+            <div class="mb-0 pb-0">
+              <p class="mt-1 pt-1 fs-4 fw-bold text-dark"><%=dentist.getFullName() %></p>
+            </div>
+            <div class="mt-0 ">
+              <p class="text-muted"><%=dentist.contacts.email%></p>
+            </div>
+          </div>
+          <div class="d-grap m-3 text-center">
+            <button class="btn btn-secondary btn-sm">Send message</button>
+          </div>
+        </div>
+        <div class="col-xl-9">
+          <div class="d-flex flex-column">
+            <div class="row mt-5 pt-5 justify-content-between mx-5 px-5">
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Gender</p>
+                <p class="fw-bold"> <%= dentist.gender %></p>
+              </div>
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Birthday</p>
+                <p class="fw-bold"> <%= dentist.dob.getFormatedDate('m') %></p>
+              </div>
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Phone Number</p>
+                <p class="fw-bold"><%= dentist.contacts.phone %></p>
+              </div>
+            </div>
+            <div class="row pt-5 justify-content-between mx-5 px-5">
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Addresss</p>
+                <p class="fw-bold"> <%= dentist.gender %></p>
+              </div>
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>PostCode</p>
+                <p class="fw-bold"> <%= dentist.gender %></p>
+              </div>
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Sate</p>
+                <p class="fw-bold"> <%= dentist.gender %></p>
+              </div>
+            </div>
+            <div class="row pt-5 justify-content-between mx-5 px-5">
+              <div class="col-xl-3 mx-5 mb-3">
+                <p>Registered</p>
+                <p class="fw-bold"><%=dentist.createdAt.getDay() %>/<%=dentist.createdAt.getMonth() %>/<%=dentist.createdAt.getFullYear() %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row"></div>
+        <div class="col-12 fw-bold text-center">Total Treatment Done</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-5 p-5">
+  <h3>Patients Linked</h3>
+  <% dentist.patients.forEach((patient, i) => {%>
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card shadow  border-0 rounded">
+      <div class="card-header border-0 bg-white text-end m-0 p-0">
+        <div class="dropdown">
+          <a class="btn ms-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-three-dots-vertical"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin/dashboard/dentist/unlink/<%=patient._id%>/edit">Edit</a></li>
+            <li><a class="dropdown-item " href="/admin/dashboard/patients/<%=patient._id%>/renderlinktodentistpage">Link to a dentist</a></li>
+            <li><a class="dropdown-item text-danger" type="button" data-bs-toggle="modal" data-bs-target="#<%=patient._id%>">Delete</a></li>
+          </ul>
+          <div class="modal fade" id="<%=patient._id%>" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-start">
+              <div class="modal-content">
+                <div class="modal-header border-0">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="info-card_icon mx-auto mb-4 d-flex flex-column justify-content-center align-items-center">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Are you sure? </h1>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-4">Do you really want to delete this patient? This process cannot be undone?</div>
+                </div>
+                <div class="modal-footer border-0">
+                  <div class="d-flex ms-3">
+                    <form action="/admin/dashboard/patients/<%=patient._id%>?_method=DELETE" method="POST">
+                      <div class="d-flex flex-row">
+                        <a class="btn btn-secondary w-50 me-1" data-bs-dismiss="modal">Cancel</a>
+                        <button class="btn btn-danger w-50 ms-1" href="">Delete</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <div class="image m-2">
+          <img src="<%=patient.image.url %>" alt="" class="avatar avatar-4xl rounded-circle me-2" />
+        </div>
+        <div>
+          <p class="fs-4 mb-0"><strong><%=patient.name.firstName %> <%=patient.name.lastName%></strong></p>
+          <p class="text-muted mt-0"><%=patient.dob.getFormatedDate('d') %></p>
+        </div>
+        <div class="bottom">
+          <a class="btn btn-success mt-2" href="/admin/dashboard/patients/<%=patient._id%>">view details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>

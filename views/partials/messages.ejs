@@ -1,0 +1,24 @@
+<div class="toast-content">
+  <div class="message-container d-flex flex-row m-0 p-0" data-type="skype">
+    <div class="chat-sidebar  rounded-2" id="chat-sidebar">
+      <div class="side-bar-content">
+        <div class="search p-3 d">
+          <input type="text" placeholder="search" class="border-0 rounded-3 py-2 px-2 fw-bold fs-6 w-100">
+          <i class="bi bi-search "></i>
+        </div>
+        <ul class="py-1">
+          <%-include('./messages/chatsidebar') %>
+        </ul>
+      </div>
+    </div>
+    <div class="chat-bar rounded-2  rounded-bottom-2 sticky-top" id="chat-content">
+      <div class="chat-bar-content">
+        <div class="position-absolute pt-4 ms-1 mt-2 fs-3 text-success">
+          <i class="bi bi-list" id="message-toggle-bar"></i>
+        </div>
+        <button type="button" class="btn-close bg-danger fs-3 float-end m-2 my-3 p-0" data-bs-dismiss="toast" aria-label="Close"></button>
+        <%-include('./messages/chatcontent') %>
+      </div>
+    </div>
+  </div>
+</div>

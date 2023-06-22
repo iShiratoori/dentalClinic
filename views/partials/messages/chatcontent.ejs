@@ -1,0 +1,86 @@
+<div class="chat-header clearfix px-5 border-bottom border-secondary-3">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" class="float-start mt-2 ms-3">
+
+  <div class="chat-about float-start ps-2 mt-3">
+    <p class="chat-with mb-0">Chatting with</p>
+    <p class="mt-0 fw-bold fs-5">
+      Vincent Porter
+    </p>
+    <!-- <div class="chat-num-messages">already 1 902 messages</div> -->
+  </div>
+</div> <!-- end chat-header -->
+<div class="chat-history p-4 border-bottom overflow-auto">
+  <ul>
+    <li>
+      <div class="mb-1 align-right">
+        <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
+        <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
+
+      </div>
+      <div class="message other-message float-end">
+        Hi Vincent, how are you? How is the project coming along?
+      </div>
+    </li>
+
+    <li>
+      <div class="mb-1">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+        <span class="message-data-time">10:12 AM, Today</span>
+      </div>
+      <div class="message my-message">
+        Are we meeting today? Project has been already finished and I have results to show you.
+      </div>
+    </li>
+
+    <li>
+      <div class="mb-1 align-right">
+        <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
+        <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
+
+      </div>
+      <div class="message other-message float-end">
+        Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?
+      </div>
+    </li>
+
+    <li>
+      <div class="mb-1">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+        <span class="message-data-time">10:20 AM, Today</span>
+      </div>
+      <div class="message my-message">
+        Actually everything was fine. I'm very excited to show this to our team.
+      </div>
+    </li>
+
+    <li>
+      <div class="mb-1">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+        <span class="message-data-time">10:31 AM, Today</span>
+      </div>
+      <i class="fa fa-circle online"></i>
+      <i class="fa fa-circle online" style="color: #AED2A6"></i>
+      <i class="fa fa-circle online" style="color:#DAE9DA"></i>
+    </li>
+
+  </ul>
+</div> <!-- end chat-history -->
+<div class="send-message p-3">
+  <form class="form" action="#">
+    <div class="row">
+      <div class="col-1">
+        <div class="fs-2 text-dark mt-1"><i class="bi bi-plus"></i></div>
+      </div>
+      <div class="col-10">
+        <div class="d-flex flex-row">
+          <input type="email" class="form-control p-1 rounded-5 border border-secondary bg-dark text-white fw-medium text-break px-3 pe-4 py-1" placeholder="Type your message" />
+          <div class="send-icon icon-inside-input pt-1 rounded-5">
+            <button type="submit" class="btn btn-primary m-0 p-0 cursor-pointer rotate-45 position-absolute">
+              <i class="bi bi-arrow-right-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

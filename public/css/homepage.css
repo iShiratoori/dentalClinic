@@ -1,0 +1,107 @@
+.landing-page {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://res.cloudinary.com/dm7zftkof/image/upload/v1687089883/dentalClinic/utils/home-bg_totxwy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+a {
+    text-decoration: none;
+}
+
+main .time {
+    font-size: 12rem;
+}
+
+.appointment:hover {
+    color: white !important;
+    border-bottom-color: none !important;
+    background-color: green !important;
+}
+
+#clock {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#clock>span {
+    margin: 0 5px;
+}
+
+.counter-label {
+    display: block;
+    position: relative;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+    main .time {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    main .time {
+        font-size: 5rem;
+    }
+}
+
+main .time span#seconds-counter {
+    color: green;
+}
+
+.cover-container {
+    max-width: 60vw;
+}
+
+.nav-link {
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 1rem;
+    border-bottom: 0.25rem solid transparent;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-link.active {
+    color: white;
+    border-bottom-color: white;
+
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+    color: #333;
+    text-shadow: none;
+}
+
+.info-page {
+    background-color: #413c3c;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+
+.info-page section.services .heading {
+    font-size: 4rem;
+}
+
+.info-page section.services img {
+    text-align: center;
+    width: 5rem;
+    height: 5rem;
+}
+
+.info-page section footer {
+    background-color: #45526e;
+}

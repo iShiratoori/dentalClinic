@@ -1,0 +1,131 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <form action="/admin/dashboard/users/<%=user._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+    <div class="user-profile">
+      <div class="row ">
+        <div class="col-sm-12 col-md-5 col-xl-4 border-start">
+          <div class="d-flex flex-column align-items-center text-center p-3 pt-3">
+            <img class="user-image" src="<%=user.image.url%>">
+            <span class="font-weight-bold mt-3"><strong><%=user.username%></strong></span>
+            <span class="text-black-50"><%=user.email%></span>
+          </div>
+          <div class="d-block d-sm-none">
+            <div class="d-flex flex-column">
+              <span class="text-start">Created at: </span>
+              <span class="text-start">Last updated: </span>
+              <span class="text-start">Last Logged: </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-8 border-start">
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="text-start">User Profile Settings</h4>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6 mb-2">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">@</span>
+                  <input type="text" class="form-control" placeholder="Username" name="user[username]" id="username" value="<%=user.username%>" disabled>
+                </div>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" name="user[roles][]" id="user-role" multiple required>
+                  <% roles.forEach((role, i) =>{%>
+                  <% if(role !== user.role) {%>
+                  <option value="<%=role%>" <%= !user.findRole(role) ? '': 'selected' %>><%=role%></option>
+                  <% } %>
+                  <% })  %>
+                </select>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="email" name="user[email]" id="email" placeholder="Email" value="<%=user.email%>" required disabled>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label for="linking-data" class="form-label">User Linkage</label>
+                <% if( user.isAssociated) {%>
+                <input class="form-control" type="text" name="user[patientId]" id="linking-data" aria-labelledby="linkageHelpBlock" placeholder="<%=user.linkageData.getFullName() %>" disabled>
+                <div id="linkageHelpBlock" class="form-text">
+                  this user/account is already linked to profile if you want to unlink please <a data-bs-toggle="modal" data-bs-target="#<%=user._id%>" href="#">click here</a>
+                </div>
+                <% }else{ %>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    dentist
+                  </label>
+                  <div id="dentistIdInputer" style="display: none;">
+                    <input type="text" class="form-control" name="user[dentistId]" placeholder="Enter dentist id">
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    patient
+                  </label>
+                  <div id="patientIdInputer" style="display: none;">
+                    <input type="text" class="form-control" name="user[patientId]" placeholder="Enter patient id">
+                  </div>
+                </div>
+                <!-- <input class="form-control" type="text" name="user[patientId]" id="linking-data" placeholder="Enter patient/dentist id profile you want to link" required> -->
+                <% } %>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button class="btn btn-primary mx-2">Save Profile</button>
+              <a href="/admin/dashboard/users" class="btn-link mx-2">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- for deletion/unlinking -->
+  <div class="modal fade" id="<%=user._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-start">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="info-card_icon mx-auto mb-4 d-flex flex-column justify-content-center align-items-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Are you sure? </h1>
+        </div>
+        <div class="modal-body">
+          <div class="mb-4">Do you really want to un-link this user linked data?</div>
+        </div>
+        <div class="modal-footer border-0">
+          <div class="d-flex flex-row">
+            <div>
+              <a class="btn btn-secondary me-1" data-bs-dismiss="modal">Cancel</a>
+            </div>
+            <div>
+              <form action="/admin/dashboard/users/<%=user._id%>/unlink" method="POST">
+                <button class="btn btn-danger me-1" href="">Un-link</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

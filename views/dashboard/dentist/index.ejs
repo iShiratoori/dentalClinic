@@ -1,0 +1,154 @@
+<% layout('layouts/boilerplate') %>
+<div class="row mb-3">
+  <div class="title">
+    <h1 class="fw-medium">Welcome back, <%= currentUser.username %></h1>
+    <p class="text-muted">Have a nice day and great work.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 col-md-12">
+    <div class="schedule-wrapper">
+      <div class="schedule">
+        <div class="schedule-header">
+          <div class="title">
+            <h3>Schedule</h3>
+          </div>
+          <div class="selection">
+            <select name="select" id="select" class="form-select">
+              <option value="" selected disabled hidden>January - octobor</option>
+              <option value="">1</option>
+              <option value="">2</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrapper text-center">
+          <div class="table-body">
+            <div class="table-header">
+              <div class="content d-flex flex-row justify-content-between me-2">
+                <div class="me-4 pt-3"><strong></strong></div>
+                <div class="me-4 pt-3"><strong>07:00</strong></div>
+                <div class="me-4 pt-3"><strong>08:00</strong></div>
+                <div class="me-4 pt-3"><strong>09:00</strong></div>
+                <div class="me-4 pt-3"><strong>10:00</strong></div>
+                <div class="me-4 pt-3"><strong>11:00</strong></div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Sun</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start">10:00</div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class="pe-0"><strong>Mon</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-1 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start">10:00</div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Tue</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Wed</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Thu</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Fri</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+            <div class="d-flex flex-row me-2">
+              <div class="content d-flex flex-column my-2">
+                <div class=""><strong>Sat</strong></div>
+              </div>
+              <div class="d-flex flex-row mx-2 body-content">
+                <div class="px-5">07:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">08:00</div>
+                <div class="px-5 border-start"></div>
+                <div class="px-5 border-start">11:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="calendar">
+      <div class="calendar-header">
+        <span class="me-1"><%=date.currentMonth %></span>
+        <span><%=date.year %></span>
+      </div>
+      <div class="calendar-body">
+        <div class="calendar-week-day">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="calendar-days">
+          <% date.days.forEach((day, i) =>{%>
+          <%if(day > 0) {%>
+          <div class="calendar-day-hover <%= date.days[date.currentDay] === day ? 'curr-date': '' %>"><%=day %></div>
+          <% } else{%>
+          <div></div>
+          <% } %>
+          <% })%>
+        </div>
+      </div>
+      <div class="month-list"></div>
+    </div>
+  </div>
+</div>

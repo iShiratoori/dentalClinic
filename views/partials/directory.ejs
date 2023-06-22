@@ -1,0 +1,12 @@
+<div class="row border-top border-bottom mb-3">
+  <div class="col-8 my-2">
+    <h4>
+      <% directory.parts.forEach((dir, i) => {%>
+      <a class="text-primary <%=directory.islast(i+1) ? 'disabled text-muted' : '' %>" href="<%= directory.islast(i+1) ? '#' : directory.getDirectory(i) %>"><%=dir%></a> <i class="<%=directory.islast(i+1) ? '' : directory.navigator %>"></i>
+      <% })  %>
+    </h4>
+  </div>
+  <div class="col-3 mt-3 text-end">
+    <h4><i class="bi bi-printer-fill"></i></h4>
+  </div>
+</div>

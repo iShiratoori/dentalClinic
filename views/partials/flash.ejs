@@ -1,0 +1,30 @@
+<% success.forEach((success, i) => { %>
+<div class="toast-container flex-fill" aria-live="polite" data-type="notification" aria-atomic="true">
+  <div class="toast fade show float-end" data-autohide="false" data-delay="5000" data-type="success" role="alert" aria-live="assertive" aria-atomic="true">
+    <button type="button" class="btn-close float-end m-2" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div class="toast-content">
+      <div class="toast-icon">
+        <i class="bi bi-x-square fs-2"></i>
+      </div>
+      <div class="toast-body"><strong> <%=success.title %></strong>
+        <div> <%=success.text %></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>
+<% error.forEach((error, i) => { %>
+<div class="toast-container flex-fill" aria-live="polite" aria-atomic="true">
+  <div class="toast fade show float-end" data-autohide="false" data-delay="5000" data-type="error" role="alert" aria-live="assertive" aria-atomic="true">
+    <button type="button" class="btn-close float-end m-2" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div class="toast-content">
+      <div class="toast-icon">
+        <i class="bi bi-x-square fs-2"></i>
+      </div>
+      <div class="toast-body"><strong> <%=error.title %></strong>
+        <div> <%=error.text %></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>
