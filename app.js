@@ -18,6 +18,7 @@ const dentistRouter = require('./routers/dentistRouter')
 const patientRouter = require('./routers/patientRouter')
 const adminRouter = require('./routers/adminRouter')
 const messagesRoute = require('./routers/messagesRoute')
+const guestRoute = require('./routers/guestRoute')
 const calendar = require('./utils/calendar')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo');
@@ -142,6 +143,7 @@ app.use('/admin', adminRouter)
 app.use('/patient', patientRouter)
 app.use('/dentist', dentistRouter)
 app.use('/messages', messagesRoute)
+app.use('/guest', guestRoute)
 
 app.get('/api/data', async (req, res, next) => {
     const { patient_ticket, action } = req.query

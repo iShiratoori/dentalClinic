@@ -28,6 +28,7 @@ const edit = catchAsync(async (req, res, next) => {
 //update user info
 const linToData = catchAsync(async (req, res, next) => {
     const { userId } = req.params;
+    const { r } = req.params
     const { dentistId, patientId, roles } = req.body.user;
     const user = await User.findById(userId)
 
