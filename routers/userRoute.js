@@ -12,8 +12,11 @@ router.route('/login')
 
 router.route('/register')
     .get(user.register)
-    .post(uploadImageCloudTemporary('dentalClinic/temporary'), validateUser, user.create)
+    .post(validateUser, uploadImageCloudTemporary('dentalClinic/temporary'), user.create)
 
+router.route('/verify/email')
+    .get(user.renderVerificationPage)
+    .post(user.verifyEmail)
 
 router.route('/logout')
     .get(user.logout)

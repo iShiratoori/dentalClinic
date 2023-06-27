@@ -1,6 +1,8 @@
 const ExpressError = require('../utils/expressError');
+const User = require('../models/users')
 const multer = require('multer')
 const { cloudinary } = require('../cloudinary')
+
 
 module.exports.isLinkedData = (req, res, next) => {
     if (!req.user.linkageData) {
@@ -14,13 +16,21 @@ module.exports.isLinkedData = (req, res, next) => {
     next();
 }
 
-module.exports.isLogged = (req, res, next) => {
+module.exports.isLogged = async (req, res, next) => {
     if (!req.isAuthenticated()) {
         // req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
     }
+
+    // Check if the user is verified
+    const user = await User.findById(req.user._id).populate('verification');
+    if (!user.isVerified()) {
+        return res.redirect('/verify/email');
+    }
+
     next();
-}
+};
+
 
 module.exports.isAdmin = (req, res, next) => {
     if (!req.user.findRole('Admin')) {

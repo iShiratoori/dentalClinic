@@ -251,7 +251,7 @@ AppointmentStatus.forEach((action, i) => {
     console.log(patientTicket[i].innerText)
     setInterval(function () {
         $.ajax({
-            url: 'http://localhost:3000/api/data?patient_ticket=' + encodeURIComponent(patientTicket[i].innerText) + '&action=' + action.innerText,
+            url: '/api/data?patient_ticket=' + encodeURIComponent(patientTicket[i].innerText) + '&action=' + action.innerText,
             method: 'GET',
             success: function (response) {
                 if (response !== action.innerText) {

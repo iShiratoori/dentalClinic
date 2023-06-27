@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const { cloudinary } = require('../cloudinary')
 const Chat = require('./chats')
 const passportLocalMongoose = require('passport-local-mongoose');
-
 const rolePermissions = {
     'Admin': ['read', 'create', 'update', 'delete'],
     'Dentist': ['read', 'update'],
@@ -36,6 +35,10 @@ const AccountSchema = new Schema({
         type: String,
         enum: ['Patient', 'Dentist', null],
         default: null
+    },
+    verification: {
+        type: Schema.Types.ObjectId,
+        ref: 'Verification'
     },
     chats: [
         {
@@ -86,10 +89,22 @@ const AccountSchema = new Schema({
                 ],
             },
         }
-    ],
+    ]
 });
 
 AccountSchema.plugin(passportLocalMongoose);
+
+AccountSchema.methods.doesCodeExist = function () {
+    return Boolean(this.verification?.code);
+};
+
+AccountSchema.methods.isCodeExpired = function () {
+    return Boolean(this.verification?.expiresAt && this.verification.expiresAt < Date.now());
+};
+
+AccountSchema.methods.isVerified = function () {
+    return Boolean(this.verification?.verified);
+};
 
 AccountSchema.virtual('isAdmin').get(function () {
     const found = this.hasPermission.some(permission => permission.role === 'Admin');

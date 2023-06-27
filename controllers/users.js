@@ -1,7 +1,11 @@
 const User = require('../models/users');
+const Verification = require('../models/verification');
 const { cloudinary } = require('../cloudinary')
 const ExpressError = require('../utils/expressError');
 const catchAsync = require('../utils/catchAsync');
+const sgMail = require('@sendgrid/mail')
+const { VerifyEmailHTML } = require('./verifyEmail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 module.exports.renderlogin = (req, res) => {
     res.render('users/login')
@@ -12,7 +16,10 @@ module.exports.register = (req, res) => {
 
 module.exports.create = catchAsync(async (req, res, next) => {
     const { email, username, password } = req.body.user;
-    const user = new User({ email, username });
+    const user = new User({ email, username, });
+    const userVerfi = Verification({
+        code: Math.floor(Math.random() * 999999)
+    })
     const wherTo = cloudinary.pathTo.user.profile
     let result;
     if (req.file) {
@@ -34,10 +41,59 @@ module.exports.create = catchAsync(async (req, res, next) => {
         })
         throw next(new ExpressError(msg, 400))
     }
+
+    //if you registering first then enebale this to register as an admin
+    // const allusers = await User.find({})
+    // if (!allusers.length) {
+    //     user.assignRoleToUser = 'Admin';
+    //     user.definePermissions();
+    //     console.log(user.hasPermission)
+    // }
+
     user.image.public_id = result.public_id;
     user.image.url = result.url;
+    user.verification = userVerfi;
+    await userVerfi.save()
     const newAccout = await User.register(user, password);
-    res.redirect('/login')
+    res.redirect('/verify/email')
+});
+
+module.exports.renderVerificationPage = catchAsync(async (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login')
+    }
+    const user = await User.findById(req.user._id).populate('verification')
+    const msg = {
+        to: user.email,
+        from: 'shiratoori2022@gmail.com',
+        subject: 'Verification Mail',
+        html: VerifyEmailHTML(user.verification.code)
+    };
+    sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    res.render('users/verification');
+});
+module.exports.verifyEmail = catchAsync(async (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/login')
+    }
+
+    const { code } = req.body
+    const user = await User.findById(req.user._id).populate('verification')
+    if (!await user.verification.verifyUser(code)) {
+        const msg = {
+            title: 'Verification Code Failed',
+            text: 'Sorry verification code does not match for what we sent '
+        }
+        throw next(new ExpressError(msg, 400));
+    }
+    res.redirect(`/${req.user.getDirectory}`);
 });
 
 module.exports.login = (req, res) => {
