@@ -65,7 +65,7 @@ module.exports.renderVerificationPage = catchAsync(async (req, res) => {
     const user = await User.findById(req.user._id).populate('verification')
     const msg = {
         to: user.email,
-        from: 'shiratoori2022@gmail.com',
+        // from: 'yourSenderVerifiedEmail',
         subject: 'Verification Mail',
         html: VerifyEmailHTML(user.verification.code)
     };
